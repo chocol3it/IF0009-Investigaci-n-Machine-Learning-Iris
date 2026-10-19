@@ -1,0 +1,11 @@
+.controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.controles input {
+  width: 8rem;
+}

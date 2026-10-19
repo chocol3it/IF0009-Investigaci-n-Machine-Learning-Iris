@@ -1,0 +1,43 @@
+<h2>Predecir la especie de una flor</h2>
+<p class="hint">
+  Escriba las cuatro medidas en centímetros. El modelo KNN de Java-ML busca las flores más
+  parecidas entre los datos de entrenamiento y responde con la especie más votada.
+</p>
+
+<div class="ejemplos">
+  <span>Probar con:</span>
+  <button type="button" class="secundario" *ngFor="let ejemplo of ejemplos" (click)="usarEjemplo(ejemplo.medidas)">
+    {{ ejemplo.nombre }}
+  </button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="predecir()">
+  <label>
+    Largo del sépalo (cm)
+    <input type="number" step="0.1" formControlName="sepaloLargo" />
+  </label>
+  <label>
+    Ancho del sépalo (cm)
+    <input type="number" step="0.1" formControlName="sepaloAncho" />
+  </label>
+  <label>
+    Largo del pétalo (cm)
+    <input type="number" step="0.1" formControlName="petaloLargo" />
+  </label>
+  <label>
+    Ancho del pétalo (cm)
+    <input type="number" step="0.1" formControlName="petaloAncho" />
+  </label>
+
+  <button type="submit" [disabled]="enviando()">
+    {{ enviando() ? 'Prediciendo...' : 'Predecir especie' }}
+  </button>
+</form>
+
+<p class="error" *ngIf="mensaje()">{{ mensaje() }}</p>
+
+<div class="resultado" *ngIf="resultado() as r">
+  <p>El modelo predice:</p>
+  <p class="especie">{{ r.especiePredicha }}</p>
+  <p class="hint">Usó los {{ r.k }} vecinos más cercanos (k = {{ r.k }}). Consulta #{{ r.id }} guardada en el historial.</p>
+</div>

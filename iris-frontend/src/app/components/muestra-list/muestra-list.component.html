@@ -1,0 +1,62 @@
+<h2>Datos de entrenamiento</h2>
+<p class="hint">
+  Estas flores ya tienen su especie conocida (etiqueta). Son la "experiencia" de la que aprende
+  el modelo. Total: {{ muestras().length }} flores ·
+  <span *ngFor="let especie of especies; let ultimo = last">
+    {{ especie }}: {{ contar(especie) }}{{ ultimo ? '' : ' · ' }}
+  </span>
+</p>
+
+<h3>Agregar una flor etiquetada</h3>
+<form [formGroup]="form" (ngSubmit)="agregar()">
+  <label>
+    Sépalo largo
+    <input type="number" step="0.1" formControlName="sepaloLargo" />
+  </label>
+  <label>
+    Sépalo ancho
+    <input type="number" step="0.1" formControlName="sepaloAncho" />
+  </label>
+  <label>
+    Pétalo largo
+    <input type="number" step="0.1" formControlName="petaloLargo" />
+  </label>
+  <label>
+    Pétalo ancho
+    <input type="number" step="0.1" formControlName="petaloAncho" />
+  </label>
+  <label>
+    Especie
+    <select formControlName="especie">
+      <option *ngFor="let especie of especies" [value]="especie">{{ especie }}</option>
+    </select>
+  </label>
+  <button type="submit">Agregar</button>
+</form>
+
+<p *ngIf="mensaje()">{{ mensaje() }}</p>
+
+<div class="tabla-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Sépalo largo</th>
+        <th>Sépalo ancho</th>
+        <th>Pétalo largo</th>
+        <th>Pétalo ancho</th>
+        <th>Especie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of muestras()">
+        <td>{{ m.id }}</td>
+        <td>{{ m.sepaloLargo }}</td>
+        <td>{{ m.sepaloAncho }}</td>
+        <td>{{ m.petaloLargo }}</td>
+        <td>{{ m.petaloAncho }}</td>
+        <td>{{ m.especie }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

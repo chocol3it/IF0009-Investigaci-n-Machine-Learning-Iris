@@ -1,0 +1,31 @@
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  align-items: end;
+  margin: 1rem 0;
+}
+
+.ejemplos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resultado {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid #2563eb;
+  border-radius: 8px;
+  background-color: #eff6ff;
+}
+
+.resultado p {
+  margin: 0.25rem 0;
+}
+
+.especie {
+  font-size: 1.75rem;
+  font-weight: 700;
+}

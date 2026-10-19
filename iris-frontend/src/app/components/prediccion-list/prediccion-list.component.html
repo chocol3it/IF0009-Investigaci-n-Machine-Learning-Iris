@@ -1,0 +1,33 @@
+<h2>Historial de predicciones</h2>
+<p class="hint">Cada consulta al modelo queda guardada en la base de datos.</p>
+
+<div class="tabla-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Fecha</th>
+        <th>Sépalo largo</th>
+        <th>Sépalo ancho</th>
+        <th>Pétalo largo</th>
+        <th>Pétalo ancho</th>
+        <th>k</th>
+        <th>Especie predicha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of predicciones()">
+        <td>{{ p.id }}</td>
+        <td>{{ p.fecha | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ p.sepaloLargo }}</td>
+        <td>{{ p.sepaloAncho }}</td>
+        <td>{{ p.petaloLargo }}</td>
+        <td>{{ p.petaloAncho }}</td>
+        <td>{{ p.k }}</td>
+        <td><strong>{{ p.especiePredicha }}</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p *ngIf="predicciones().length === 0">Todavía no hay predicciones registradas.</p>

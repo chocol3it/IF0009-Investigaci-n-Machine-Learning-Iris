@@ -1,0 +1,42 @@
+<h2>Entrenar el modelo</h2>
+<p class="hint">
+  <strong>k</strong> es la cantidad de vecinos que votan. Al entrenar, el backend mide qué tan
+  bien funciona ese k con validación cruzada de 10 particiones: cada flor se clasifica con un
+  modelo que nunca la vio.
+</p>
+
+<div class="controles">
+  <label>
+    Valor de k
+    <input type="number" min="1" [(ngModel)]="k" />
+  </label>
+  <button type="button" (click)="entrenar()" [disabled]="entrenando()">
+    {{ entrenando() ? 'Entrenando...' : 'Reentrenar modelo' }}
+  </button>
+</div>
+
+<p *ngIf="mensaje()">{{ mensaje() }}</p>
+
+<h3>Historial de entrenamientos</h3>
+<div class="tabla-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Fecha</th>
+        <th>k</th>
+        <th>Aciertos</th>
+        <th>Exactitud</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of entrenamientos()">
+        <td>{{ e.id }}</td>
+        <td>{{ e.fecha | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ e.k }}</td>
+        <td>{{ e.aciertos }} / {{ e.totalMuestras }}</td>
+        <td>{{ e.exactitud | percent: '1.1-1' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

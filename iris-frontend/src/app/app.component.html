@@ -1,0 +1,13 @@
+<header class="navbar">
+  <span class="navbar-brand">{{ title() }}</span>
+  <nav>
+    <a routerLink="/predecir" routerLinkActive="active">Predecir</a>
+    <a routerLink="/historial" routerLinkActive="active">Historial</a>
+    <a routerLink="/modelo" routerLinkActive="active">Modelo</a>
+    <a routerLink="/muestras" routerLinkActive="active">Datos de entrenamiento</a>
+  </nav>
+</header>
+
+<main>
+  <router-outlet />
+</main>
